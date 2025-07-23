@@ -64,7 +64,16 @@ const Crud = {
             res.status(504).json({msg : error.msg})
             
         }
-    }
+    },
+    delete: async function (req, res) {
+        try {
+          const userId = req.params.id;
+          await User.findByIdAndDelete(userId);
+          res.json({ m: "User deleted successfully" });
+        } catch (error) {
+          res.status(500).json({ m: error.message });
+        }
+      }
 
 
 
